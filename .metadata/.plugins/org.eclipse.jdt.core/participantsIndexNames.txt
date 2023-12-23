@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\kalerantesd\Desktop\keycloakRestApi App\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3146918973.index
-\rest-api\src\main\java
