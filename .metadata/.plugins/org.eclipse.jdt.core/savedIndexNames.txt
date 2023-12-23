@@ -1,0 +1,16 @@
+INDEX VERSION 1.131+C:\Users\kalerantesd\Desktop\keycloakRestApi App\.metadata\.plugins\org.eclipse.jdt.core
+4035555257.index
+2612556664.index
+3460914469.index
+4205358117.index
+762493604.index
+2241913125.index
+509670455.index
+3254658197.index
+1865797976.index
+3295419645.index
+3839919002.index
+1347725290.index
+2414927906.index
+3751798728.index
+3171788130.index

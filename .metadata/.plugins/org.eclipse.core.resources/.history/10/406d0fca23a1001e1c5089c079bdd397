@@ -1,0 +1,100 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import Models.Users;
+import requests.KeycloakRequests;
+
+
+
+/**
+ * Servlet implementation class RepoServlet
+ */
+@WebServlet("/userRepository")
+public class RepoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RepoServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	List<Users>list=KeycloakRequests.getUsers();
+    	HttpSession session=request.getSession();
+    	session.setAttribute("usersList",list);
+    	
+    	response.sendRedirect("main.jsp");
+    	
+//        String jsonResponse = makeGetRequest();
+//        System.out.println(jsonResponse);
+//        JSONArray jsonArray=new JSONArray(jsonResponse);
+//        for (int i = 0; i < jsonArray.length(); i++) {
+//            JSONObject userObject = jsonArray.getJSONObject(i);
+//            int id = userObject.getInt("id");
+//            String name = userObject.getString("name");
+//            String username = userObject.getString("username");
+//            String email = userObject.getString("email");
+//            Object company=userObject.getJSONObject("company");
+//            System.out.println(id+" "+name+" "+username+" "+company+" ");
+//        }
+//        response.setContentType("application/json");
+//        response.getWriter().write(jsonResponse);
+
+//       ArrayList<Users>list=JsonConfig.getUsersList(jsonResponse);
+        
+    }
+
+//    public static String makeGetRequest() {
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest getRequest = HttpRequest.newBuilder()
+//                .uri(URI.create("https://jsonplaceholder.typicode.com/users"))
+//                .GET()
+//                .build();
+//
+//        try {
+//            HttpResponse<String> httpResponse = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+//            System.out.println(httpResponse.body().getClass());
+////            ArrayList<Users>list=JsonConfig.getUsersList(httpResponse.body());
+//            
+//            
+//            return httpResponse.body();
+//        } catch (IOException | InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

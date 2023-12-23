@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.form{
+max-width: 500px; 
+margin: auto;
+}
