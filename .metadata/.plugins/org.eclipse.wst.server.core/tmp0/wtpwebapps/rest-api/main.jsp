@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User Repository</title>
+<title>Main Page</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -121,11 +121,9 @@ boolean clientBtn = (session.getAttribute("clientBtn") != null) ? (boolean) sess
 							<th>ID</th>
 							<th>Client ID</th>
 							<th>Name</th>
-							<th>Root URL</th>
-							<th>Base URL</th>
-							<th>SurrogateAuthRequired</th>
-							<th>Enabled</th>
-							<th>AlwaysDisplayInConsole</th>
+							<th>View Client
+							
+					
 							<!-- Add more columns as needed -->
 						</tr>
 					</thead>
@@ -134,14 +132,10 @@ boolean clientBtn = (session.getAttribute("clientBtn") != null) ? (boolean) sess
 						for (Client client : clientList) {
 						%>
 						<tr>
-							<td><%=client.getId()%></td>
-							<td><%=client.getClientId()%></td>
-							<td><%=client.getName()%></td>
-							<td><%=client.getRootUrl()%></td>
-							<td><%=client.getBaseUrl()%></td>
-							<td><%=client.isSurrogateAuthRequired() %>
-							<td><%=client.isEnabled() %>
-							<td><%=client.isAlwaysDisplayInConsole() %>
+							<th><%=client.getId()%></td>
+							<th><%=client.getClientId()%></td>
+							<th><%=client.getName()%></td>
+							<th><a href="/rest-api/viewClient/<%=client.getId()%>">View Client</a></th>
 							<!-- Populate other client fields similarly -->
 						</tr>
 						<%
@@ -162,5 +156,7 @@ boolean clientBtn = (session.getAttribute("clientBtn") != null) ? (boolean) sess
 
 
 	<script type="text/javascript" src='table.js'></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

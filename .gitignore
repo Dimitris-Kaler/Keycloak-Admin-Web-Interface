@@ -12,7 +12,7 @@ Servers
 .settings
 .idea
 .gradle
-
+.metadata
 # Package Files #
 *.jar
 *.war

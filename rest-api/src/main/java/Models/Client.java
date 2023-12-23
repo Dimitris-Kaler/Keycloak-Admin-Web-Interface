@@ -3,6 +3,8 @@ package Models;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+
 public class Client {
 String id;
 String clientId;
@@ -261,6 +263,8 @@ public Map<String, Boolean> getAccess() {
 public void setAccess(Map<String, Boolean> access) {
 	this.access = access;
 }
+
+
 
 
 }

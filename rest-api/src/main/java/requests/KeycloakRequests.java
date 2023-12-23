@@ -7,7 +7,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -320,9 +322,60 @@ public class KeycloakRequests {
 		System.out.println(list);
 		return list;
 	}
+
+	public static Client getClient(String id) {
+		String accessToken=TokenRequest.getToken();
+		URL url;
+		try {
+			url = new URL(KeycloakConstants.KEYCLOAK_URL+"/admin/realms/"+KeycloakConstants.REALM+"/clients/"+id);
+			
+			HttpURLConnection conn=(HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+			int responseCode = conn.getResponseCode();
+			 BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        String line;
+		        StringBuilder response = new StringBuilder();
+		        while ((line = reader.readLine()) != null) {
+		            response.append(line);
+		        }
+		       //create the user you found
+		        JSONObject obj=new JSONObject(response.toString());
+		        System.out.println(obj);
+		        Client client=new Client();
+		        client.setId(obj.getString("id"));
+	            client.setClientId(obj.getString("clientId"));
+	            client.setName(obj.optString("name", ""));
+	            client.setRootUrl(obj.optString("rootUrl", ""));
+	            client.setBaseUrl(obj.optString("baseUrl", ""));
+	            client.setSurrogateAuthRequired(obj.optBoolean("surrogateAuthRequired", false));
+	            client.setEnabled(obj.optBoolean("enabled", false));
+	            client.setAlwaysDisplayInConsole(obj.optBoolean("alwaysDisplayInConsole", false));
+	            client.setClientAuthenticatorType(obj.optString("clientAuthenticatorType", ""));
+	            client.setNotBefore(obj.optInt("notBefore", 0));
+	            client.setBearerOnly(obj.optBoolean("bearerOnly", false));
+	            client.setConsentRequired(obj.optBoolean("consentRequired", false));
+	            client.setStandardFlowEnabled(obj.optBoolean("standardFlowEnabled", false));
+	            client.setImplicitFlowEnabled(obj.optBoolean("implicitFlowEnabled", false));
+	            client.setDirectAccessGrantsEnabled(obj.optBoolean("directAccessGrantsEnabled", false));
+	            client.setServiceAccountsEnabled(obj.optBoolean("serviceAccountsEnabled", false));
+	            client.setPublicClient(obj.optBoolean("publicClient", false));
+	            client.setFrontchannelLogout(obj.optBoolean("frontchannelLogout", false));
+	            client.setProtocol(obj.optString("protocol", ""));
+	            //client.setAttributes((Map<String, String>) obj.optJSONObject("attributes"));
+	            // Set other properties accordingly
+
+	            // Print or use the created Client object
+	            System.out.println(client);
+
+	            return client;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 		
-		
-		
+	}
 		
 	
 	     
